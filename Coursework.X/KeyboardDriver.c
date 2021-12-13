@@ -1,5 +1,3 @@
-#include <xc.h>
-
 #include "KeyboardDriver.h"
 
 void init_keyboard()

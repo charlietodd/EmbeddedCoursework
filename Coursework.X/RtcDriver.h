@@ -2,10 +2,7 @@
 #define	RTCDIVER_H
 
 #include <xc.h>
-
-#ifdef	__cplusplus
-extern "C" {
-#endif
+#include <string.h>
     
 #define _XTAL_FREQ 4000000 //how fast the crystal weve used is (for us timing)
       
@@ -27,8 +24,8 @@ char hr10 = '0';
 char hr = '0';
 char time[6] = "HELLO!";
 
-void delay ();
-void delay_xy (int x, int y);
+//void delay ();
+//void delay_xy (int x, int y);
 void write_cmd(char cmd);
 void write_data(char data);
 void write_string_at_pos(int position, char text[]); 
@@ -42,8 +39,8 @@ void sendRTC (unsigned char value);
 unsigned char getRTC (void);
 char intToChar(int value);
 void setTime(char timeDigit, char time);
-char intToHex(int i);
-int hexToInt(char i);
+//char intToHex(int i);
+//int hexToInt(char i);
 void setHour(int hour);
 void setMin(int min);
 void setSec(int sec);

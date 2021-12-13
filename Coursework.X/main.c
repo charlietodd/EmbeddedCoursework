@@ -1,8 +1,9 @@
-#include <xc.h>
-
 #include "LcdDriver.h"
 #include "KeyboardDriver.h"
 #include "RtcDriver.h"
+#include "Delay.h"
+
+#include <xc.h> // DO WE NEED IN MAIN OR DRIVERS THAT USE IT? DOES WORK LIKE THIS THOUGH (SAVE MEMORY?)
 
 // config
 #pragma config FOSC = HS    // Oscillator Selection bits (HS oscillator)
@@ -11,39 +12,41 @@
 #pragma config BOREN = OFF  // Brown-out Reset Enable bit (BOR enabled)
 #pragma config LVP = OFF    // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3 is digital I/O, HV on MCLR must be used for programming)
 
+unsigned char mode = HOME;
+
 void write_empties();
 
-// ====== LCD AND KEYBOARD ======
-void main(void) 
-{
-    ADCON1 = 0x07;
-    TRISA = 0x00;
-    TRISD = 0x00;
-    
-    init_display();
-    clear_display();
-    write_string_at_pos(0, "hello world: ");
-    int currentPos = 16;
-    
-    while (1)
-    {
-        init_keyboard();
-        char test = read_keys();
-        if(test != '#')
-        {
-            write_char_at_pos(currentPos, test);
-            if(currentPos != 31){
-             ++currentPos;   
-            }
-            else{
-                currentPos = 16;
-            }
-        }
-        delay_xy (10, 100); // debouncing done here
-    }
-}
+// ================== LCD AND KEYBOARD ==================
+//void main(void) 
+//{
+//    ADCON1 = 0x07;
+//    TRISA = 0x00;
+//    TRISD = 0x00;
+//    
+//    init_display();
+//    clear_display();
+//    write_string_at_pos(0, "hello world: ");
+//    int currentPos = 16;
+//    
+//    while (1)
+//    {
+//        init_keyboard();
+//        char test = read_keys();
+//        if(test != '#')
+//        {
+//            write_char_at_pos(currentPos, test);
+//            if(currentPos != 31){
+//             ++currentPos;   
+//            }
+//            else{
+//                currentPos = 16;
+//            }
+//        }
+//        delay_xy (10, 100); // debouncing done here
+//    }
+//}
 
-//// ====== REAL TIME CLOCK ======
+//// ================== REAL TIME CLOCK ==================
 //void main(void) 
 //{
 //    ADCON1 = 0x07;
@@ -55,17 +58,10 @@ void main(void)
 //    clear_display();
 //    write_string_at_pos(0, "hello world: ");
 //    int currentPos = 16;
-//    
-//    RST = 1;
-//    sendRTC(0x84);
-//    sendRTC(0x16);
-//    RST = 0;
-//    __delay_us(20);
-//    
-//    
+//
 //    // ====== USE TO SET CURRENT TIME ======
-//    //setHour(12);
-//    //setMin(16);
+//    //setHour(18);
+//    //setMin(22);
 //    //setSec(01);
 //    
 //    while (1)
@@ -114,3 +110,33 @@ void main(void)
 //     
 //    }
 //}
+
+void main(void) 
+{
+    ADCON1 = 0x07;
+    TRISA = 0x00;
+    TRISD = 0x00;
+    
+    init_display();
+    clear_display();
+    write_string_at_pos(0, "hello world: ");
+    int currentPos = 16;
+    
+    
+    while (1)
+    {
+        init_keyboard();
+        char test = read_keys();
+        if(test != '#')
+        {
+            write_char_at_pos(currentPos, test);
+            if(currentPos != 31){
+             ++currentPos;   
+            }
+            else{
+                currentPos = 16;
+            }
+        }
+        delay_xy (10, 100); // debouncing done here
+    }
+}

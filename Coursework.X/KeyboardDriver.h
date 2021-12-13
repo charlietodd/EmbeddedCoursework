@@ -1,6 +1,5 @@
-#ifndef KEYBOARDDIVER_H
-#define	KEYBOARDDIVER_H
-
+#ifndef KEYBOARDDRIVER_H
+#define	KEYBOARDDRIVER_H
 #include <xc.h>
 
 // create variables for pins
@@ -12,8 +11,6 @@
 #define col2 RC7
 #define col3 RC6
 #define col4 RC5
-
-
 
 void init_keyboard();
 char read_keys();

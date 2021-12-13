@@ -7,6 +7,9 @@
       <itemPath>KeyboardDriver.h</itemPath>
       <itemPath>LcdDriver.h</itemPath>
       <itemPath>RtcDriver.h</itemPath>
+      <itemPath>Conversions.h</itemPath>
+      <itemPath>Delay.h</itemPath>
+      <itemPath>Utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +22,9 @@
       <itemPath>LcdDriver.c</itemPath>
       <itemPath>RtcDriver.c</itemPath>
       <itemPath>KeyboardDriver.c</itemPath>
+      <itemPath>Conversions.c</itemPath>
+      <itemPath>Delay.c</itemPath>
+      <itemPath>Utils.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -135,7 +141,7 @@
       <PICkit2PlatformTool>
         <property key="pk2settings.3state" value="false"/>
         <property key="pk2settings.preserveee" value="false"/>
-        <property key="pk2settings.setvddvoltage" value=""/>
+        <property key="pk2settings.setvddvoltage" value="5.00"/>
         <property key="pk2settings.userpgmexec" value="true"/>
         <property key="pk2settings.usetargetpower" value="false"/>
       </PICkit2PlatformTool>

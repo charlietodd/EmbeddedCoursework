@@ -1,10 +1,9 @@
 #include "RtcDriver.h"
 #include "LcdDriver.h"
+#include "Delay.h"
+#include "Conversions.h"
 
-#include <xc.h>
-#include <string.h>
-
-void delay () ;
+void delay ();
 
 void delay_xy (int x, int y);
 
@@ -116,32 +115,6 @@ void setTime(char timeDigit, char time){
     __delay_us(20);
 }
 
-char intToHex(int i){
-    char h = 0;
-    int power = 1;
-    while (i)
-    {
-        // assert(h % 16 < 10)
-        h += i % 10 * power;
-        i /= 10;
-        power *= 16;
-    }
-    return h;
-}
-
-int hexToInt(char i){
-    char h = 0;
-    int power = 1;
-    while (i)
-    {
-        // assert(h % 16 < 10)
-        h += i % 16 * power;
-        i /= 16;
-        power *= 10;
-    }
-    return h;
-}
-
 void setHour(int hour){
     setTime(0x84,intToHex(hour));
 }
@@ -153,6 +126,9 @@ void setMin(int min){
 void setSec(int sec){
     setTime(0x80,intToHex(sec));
 }
+
+char intToHex(int i);
+int hexToInt(char i);
 
 char* getHour(){    
     RST = 1;
